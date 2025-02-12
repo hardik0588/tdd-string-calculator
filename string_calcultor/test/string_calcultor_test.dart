@@ -15,4 +15,8 @@ void main() {
   test('returns the number itself when only one number is provided', () {
     expect(calculator.add("1"), 1);
   });
+
+  test('returns sum of two comma-separated numbers', () {
+    expect(calculator.add("1,5"), 6);
+  });
 }

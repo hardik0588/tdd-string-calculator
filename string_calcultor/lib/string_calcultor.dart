@@ -3,6 +3,10 @@ class StringCalculator {
     if (input.isEmpty) {
       return 0;
     }
-    return int.parse(input);
+    return _sumOfNumbers(input.split(","));
+  }
+
+  int _sumOfNumbers(List<String> numbers) {
+    return numbers.map(int.parse).reduce((a, b) => a + b);
   }
 }

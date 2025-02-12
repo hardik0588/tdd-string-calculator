@@ -5,7 +5,10 @@ class StringCalculator {
     }
 
     List<String> numbers = _extractNumbers(input);
-    return _sumOfNumbers(numbers);
+    List<int> parsedNumbers = _convertToIntegers(numbers);
+    checkNegativeNumber(parsedNumbers);
+
+    return _sumOfNumbers(parsedNumbers);
   }
 
   List<String> _extractNumbers(String input) {
@@ -20,7 +23,20 @@ class StringCalculator {
     return input.split(RegExp(delimiterPattern));
   }
 
-  int _sumOfNumbers(List<String> numbers) {
-    return numbers.map(int.parse).reduce((a, b) => a + b);
+  List<int> _convertToIntegers(List<String> numbers) {
+    return numbers.map(int.parse).toList();
+  }
+
+  void checkNegativeNumber(List<int> numbers) {
+    List<int> negativeNumbers = numbers.where((n) => n < 0).toList();
+
+    if (negativeNumbers.isNotEmpty) {
+      throw FormatException("negative numbers not allowed: ${negativeNumbers.join(", ")}");
+    }
+  }
+
+  int _sumOfNumbers(List<int> numbers) {
+    return numbers.fold(0, (sum, number) => sum + number);
   }
 }
+

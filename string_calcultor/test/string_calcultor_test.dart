@@ -19,4 +19,8 @@ void main() {
   test('returns sum of two comma-separated numbers', () {
     expect(calculator.add("1,5"), 6);
   });
+
+  test('newlines between numbers and some of that numbers', () {
+    expect(calculator.add("1\n2,3"), 6);
+  });
 }
